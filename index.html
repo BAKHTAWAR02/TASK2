@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks - To-Do App with Reminders</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+   
+    <div class="header" >
+      <h1>My Tasks</h1>
+      <p>Set reminders with priority, categories, and custom sounds</p>
+    </div>
+
+    <div class="search-bar">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search tasks..."
+        onkeyup="filterTasks()"
+      />
+    </div>
+
+    <div class="filter-chips">
+      <div class="filter-chip active" onclick="filterByPriority('all')">All Tasks</div>
+      <div class="filter-chip" onclick="filterByPriority('high')">🔴 High</div>
+      <div class="filter-chip" onclick="filterByPriority('medium')">🟡 Medium</div>
+      <div class="filter-chip" onclick="filterByPriority('low')">🟢 Low</div>
+    </div>
+
+    <div class="form-card">
+      <form id="taskForm">
+        <div class="form-group">
+          <label for="taskTitle">Task</label>
+          <input 
+            type="text" 
+            id="taskTitle" 
+            placeholder="e.g., Grocery shopping"
+            required
+          />
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label for="taskCategory">Category</label>
+            <select id="taskCategory" required>
+              <option value="">Select category</option>
+              <option value="Grocery">🛒 Grocery</option>
+              <option value="Work">💼 Work</option>
+              <option value="Personal">👤 Personal</option>
+              <option value="Health">🏥 Health</option>
+              <option value="Entertainment">🎬 Entertainment</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" required>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskRepeat">Repeat</label>
+            <select id="taskRepeat" required>
+              <option value="never">Never</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskDate">Date</label>
+            <input 
+              type="date" 
+              id="taskDate"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="taskTime">Time</label>
+            <input 
+              type="time" 
+              id="taskTime"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="enableNotification" checked />
+          <label for="enableNotification">Enable notification</label>
+        </div>
+
+        <div class="sound-section">
+          <div class="form-group">
+            <label for="notificationSound">🔊 Select Notification Sound</label>
+            <div class="sound-select-wrapper">
+              <select id="notificationSound" required>
+                <option value="bell">🔔 Bell (Ding)</option>
+                <option value="alarm">⏰ Alarm (Beep)</option>
+                <option value="chime">🎵 Chime (Ding-dong)</option>
+                <option value="notification">📢 Notification (Pop)</option>
+                <option value="alert">⚠️ Alert (Sharp)</option>
+                <option value="gentle">🤫 Gentle (Soft)</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="play-btn" onclick="previewSound()">🔊 Preview Sound</button>
+        </div>
+
+        <button type="submit" class="submit-btn">Add Task</button>
+      </form>
+    </div>
+
+    <div class="tasks-section">
+      <h2>Your Tasks</h2>
+      <div id="taskList" class="task-list">
+        <div class="empty-state">
+          <p>No tasks yet. Add one to get started!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
